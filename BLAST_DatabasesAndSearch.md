@@ -2,11 +2,13 @@
 
 First, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
 
-Click the link here to go [straight to the executables](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST).
+Move this directory (jargon for 'folder') somewhere useful. Maybe your Desktop -- I keep mine in a directory/folder called "Bioinformatics" on my Desktop.
 
-Move this directory (jargon for 'folder') somewhere useful. Maybe your Desktop -- I keep mine in a directory called "Bioinformatics" on my Desktop.
+The directory comes with an annoying name. Rename it something simple like "BLASTplus", and move into the directory:
 
-The directory comes with an annoying name. Rename it something simple like "BLASTplus".
+```
+cd BLASTplus
+```
 
 Now we want to make three new directories to keep ourselves organized:
 
@@ -14,7 +16,7 @@ Now we want to make three new directories to keep ourselves organized:
 mkdir Input Output Databases
 ```
 
-We will put our various files in these folders. As you might guess, we will put our assembled sequences/contigs into **Input**, the results of our BLAST searches into **Output**, and our newly created database in, well **Databases**.
+We will put our various files into these directories. As you might guess, we will put our assembled sequences/contigs into **Input**, the results of our BLAST searches into **Output**, and our newly created database in, well **Databases**.
 
 To build our BLASTable database, place your sequence assembly (in FASTA format) into the "Input" directory.
 
