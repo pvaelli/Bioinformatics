@@ -47,13 +47,13 @@ mv ~/Desktop/assembly.fasta ~/Desktop/BLAST+/Input
 ```
 
 To make the database, we run the `makeblastdb` command. This command has 5 inputs:
-1. The path to the makeblastdb executable file
-2. The path to your input file, which is your FASTA-formatted assembly
-3. Specify if you have nucleotide or amino acid data. After -dbtype, add "nucl" or "prot" depending on your file. 
-4. -parse_seqids tells the program to parse by "|" characters in the sequence headers. You don't need to know any more than that.
-5. The path for the output, which will be our new BLASTable database. Therefore, we will direct the output to the "Database" directory.
+1. The path to the makeblastdb executable file  
+2. The path to your input file, which is your FASTA-formatted assembly  
+3. Specify if you have nucleotide or amino acid data. After `-dbtype`, add "nucl" or "prot" depending on your file.  
+4. `-parse_seqids` tells the program to parse by "|" characters in the sequence headers. You don't need to know any more than that.  
+5. The path for the output, which will be our new BLASTable database. Therefore, we will direct the output to the "Database" directory.  
 
-Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the paths and filenames to match your own computer. 
+Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. So far, the paths should be consistent 
 
 ```
 ~/Desktop/BLAST+/bin/makeblastdb 
