@@ -1,24 +1,39 @@
-##Instructions for building BLAST databases on your local machine using BLAST+.
+##Instructions for building BLAST databases on your local machine using BLAST+ on MacOSX.
 
-First, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+BLAST+ is a program that allows you to build custom BLASTable databases from FASTA-formatted sequence assemblies. These assemblies can include genomic or transcriptomic sequence data. For our purposes, we build BLAST+ databases from transcriptome assemblies to probe for genes of interest.
 
-Move this directory (jargon for 'folder') somewhere useful. Maybe your Desktop -- I keep mine in a directory/folder called "Bioinformatics" on my Desktop.
+Before we begin, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+or [here](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) to download BLAST+ on your computer.
 
-The directory comes with an annoying name. Rename it something simple like "BLASTplus", and move into the directory:
-
+Unzip the file to create the BLAST+ directory. Do this manually or on the command line type:
 ```
-cd BLASTplus
+cd ~/Downloads
+tar -xvzf ncbi-blast-2.6.0+-x64-macosx.tar.gz
+```
+The directory comes with an annoying name. Rename it something simple like "BLAST+". Do it manually, or on the command line type:
+```
+mv ncbi-blast-2.6.0+ BLAST+
 ```
 
-Now we want to make three new directories to keep ourselves organized:
+Let's move the directory somewhere more useful, like our Desktop. Do this manually by dragging the folder, or simply type:
+```
+mv ~/Downloads/BLAST+ ~/Desktop
+cd ~/Desktop/BLAST+
+```
 
+The BLAST+ program comes with a 'bin' directory that contains all of the necessary executables for running the program (e.g. blastn, blastp, etc.). Now we want to make three new directories for our *own data* to keep ourselves organized:
 ```
 mkdir Input Output Databases
 ```
 
-We will put our various files into these directories. As you might guess, we will put our assembled sequences/contigs into **Input**, the results of our BLAST searches into **Output**, and our newly created database in, well **Databases**.
+We've created three directories with intuitive names. From here, we need only 
+...1.) Create a BLASTable database from a FASTA-formatted sequence assembly and 
+...2.) Create a list of probes (nucleotide, amino acid, or protein domain sequences) for your gene of interest to be used as a BLAST query.
 
-To build our BLASTable database, place your sequence assembly (in FASTA format) into the "Input" directory.
+To build our BLASTable database, place your sequence assembly (in FASTA format) into the "Input" directory. Do this manually, or type:
+```
+mv path-to-your-file/filename.fasta ~/Desktop/BLAST+/Input
+```
 
 Within the main directory there is a subdirectory called "bin". This contains the executable that allows us to build a database and run various BLAST searches:
 
