@@ -34,6 +34,7 @@ We've created three directories with intuitive names. From here, we need only
 ...1.) Create a BLASTable database from a FASTA-formatted sequence assembly and 
 ...2.) Create a list of probes (nucleotide, amino acid, or protein domain sequences) for your gene of interest to be used as a BLAST query.
 
+**
 ###Building a BLASTable database  
 
 To build our database, first place your FASTA-formatted sequence assembly in the "Input" directory. Do this manually, or:
@@ -60,6 +61,7 @@ Actual version:
 ```
 What is this code doing? In the first line, we give the path to the executable file 'makeblastdb' in the bin directory. '-in' is a flag that represents input file. '-dbtype' is a flag that tells the program if your FASTA data is nucleotide or amino acid data. '-out' tells the program where to save your new database and what to call it. 
 
+**
 ### Running a BLAST search
 Make a txt file with your sequence queries and put this file into your "Input" directory
 Run the below commands, but **change paths as necessary** and look at the flags. I have trouble running these commands without putting the explicit paths. 
@@ -76,4 +78,34 @@ Actual version:
 ```
 ~/Desktop/BLAST+/bin/tblastn -query ~/Desktop/BLAST+/Input/Homo_nav1.6.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome -out ~/Desktop/BLAST+/Output/Nav1.6_hits.html -html
 ```
+**
+### Specific example
 
+Making a database from transcriptomic data.
+
+Tidy version:
+```
+~/Desktop/BLAST+/bin/makeblastdb 
+-in ~/Desktop/BLAST+/Input/newt.Trinity.fasta 
+-dbtype nucl 
+-parse_seqids 
+-out ~/Desktop/BLAST+/Database/newt_transcriptome
+```
+Actual version:
+```
+~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Database/DATABASE_FILE
+```
+
+Performing a tBLASTn search for the beta actin gene:
+
+Tidy version:
+```
+~/Desktop/BLAST+/bin/tblastn 
+-query ~/Desktop/BLAST+/Input/Homo_ATCB.fasta 
+-db ~/Desktop/BLAST+/Database/newt_transcriptome 
+-out ~/Desktop/BLAST+/Output/ATCB_hits.html -html
+```
+Actual version:
+```
+~/Desktop/BLAST+/bin/tblastn -query ~/Desktop/BLAST+/Input/Homo_ATCB.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome -out ~/Desktop/BLAST+/Output/ATCB_hits.html -html
+```
