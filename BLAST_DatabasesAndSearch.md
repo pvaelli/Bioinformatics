@@ -139,6 +139,8 @@ Before we wrap up, there are a few different types of BLAST searches that we can
 
 That's it! You've now gone from a FASTA-formatted sequence assembly to a BLASTable database to a HTML formatted file with a list of your top hits. Now you can copy the name of your top hits and open your original sequence assembly to search and retrieve your hits. You should probably [BLAST your hits on NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to confirm the identity of each sequence. 
 
+Extra:
+Here's a [list of all BLAST+ executables](https://www.ncbi.nlm.nih.gov/books/NBK279675/) and their individual commands/flags.
 ***
 ### Specific example
 
