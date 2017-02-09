@@ -2,8 +2,10 @@
 
 BLAST+ is a program that allows you to build custom BLASTable databases from FASTA-formatted sequence assemblies. These assemblies can include genomic or transcriptomic sequence data. For our purposes, we build BLAST+ databases from transcriptome assemblies to probe for genes of interest.
 
-Before we begin, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
-or [here](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
+Before we begin, go to this [link to download BLAST+](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)
+
+If the previous link fails, try [here](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+
 
 Unzip the file to create the BLAST+ directory. Do this manually or on the command line type:
 ```
