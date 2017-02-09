@@ -1,4 +1,4 @@
-##Instructions for building BLAST databases on your local machine using BLAST+ on MacOSX.
+##Instructions for building BLAST databases on your local computer using BLAST+ on MacOSX.
 
 BLAST+ is a command line tool that allows you to build custom BLASTable databases from FASTA-formatted sequence assemblies. These assemblies can include genomic or transcriptomic sequence data. For our purposes, we build BLAST+ databases from transcriptome assemblies to probe for genes of interest.
 
@@ -31,8 +31,8 @@ The BLAST+ program comes with a 'bin' directory that contains all of the necessa
 mkdir Input Output Databases
 ```
 We've created three directories with intuitive names. From here, we need only: 
-...1.) Create a BLASTable database from a FASTA-formatted sequence assembly and 
-...2.) Create a list of probes (nucleotide, amino acid, or protein domain sequences) for your gene of interest to be used as a BLAST query.
+1. Create a BLASTable database from a FASTA-formatted sequence assembly and 
+2. Create a list of probes (nucleotide, amino acid, or protein domain sequences) for your gene of interest to be used as a BLAST query.
 
 ***
 ###Building a BLASTable database  
