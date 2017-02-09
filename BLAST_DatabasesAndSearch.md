@@ -117,19 +117,32 @@ Now we're ready to go. We have a FASTA-formatted query sequence and a BLAST+ fri
 
 Tidy version:
 ```
-~/Desktop/BLAST+/bin/tblastn 
+~/Desktop/BLAST+/bin/blastn 
 -query ~/Desktop/BLAST+/Input/mouse_actb.fasta 
 -db ~/Desktop/BLAST+/Database/newt_transcriptome 
 -out ~/Desktop/BLAST+/Output/mouse_actb_hits.html -html
 ```
 Actual version:
 ```
-~/Desktop/BLAST+/bin/tblastn -query ~/Desktop/BLAST+/Input/Homo_nav1.6.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome -out ~/Desktop/BLAST+/Output/Nav1.6_hits.html -html
+~/Desktop/BLAST+/bin/blastn -query ~/Desktop/BLAST+/Input/mouse_actb.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome -out ~/Desktop/BLAST+/Output/mouse_actb_hits.html -html
 ```
+So what's going on up here? First, we direct toward the blastn executable in the bin. `-query` specifies the location and name of our query file; `-db` specifies the location and name of our database; and `-out` specifies the location for the output, which is a list of your top BLAST hits. Here, we are creating a new file `mouse_actb_hits.html` using the `-html` flag to create the HTML file. We can then open this file in our web browser to analyze the results of our BLAST search.
+
+Before we wrap up, there are a few different types of BLAST searches that we can perform. Here is a list that includes search type, query type, and data type. By type, I mean either nucleotide data or amino acid data. Here are examples:
+
+| BLAST search  | Query       | Database  |
+| ------------- |-------------| ----------|
+| blastn        | nucleotide  | nucleotide|
+| blastp        | protein     | protein   |
+| tblastn       | protein     | nucleotide| 
+| blastx        | nucleotide  | protein   |
+
+That's it! You've now gone from a FASTA-formatted sequence assembly to a BLASTable database to a HTML formatted file with a list of your top hits. Now you can copy the name of your top hits and open your original sequence assembly to search and retrieve your hits. You should probably BLAST your hits on [NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to confirm the identity of each sequence. 
+
 ***
 ### Specific example
 
-Making a database from transcriptomic data.
+Making a database from our transcriptomic data.
 
 Example `makeblastdb`:
 ```
@@ -144,9 +157,9 @@ Remember to remove hard returns. The code should actually look like this:
 ~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Database/DATABASE_FILE
 ```
 
+Running a BLAST search.
 
-
-Example `tblastn` searchs:
+Example `tblastn` searches:
 ```
 ~/Desktop/BLAST+/bin/tblastn 
 -query ~/Desktop/BLAST+/Input/Homo_ATCB.fasta 
