@@ -52,11 +52,11 @@ Tidy version:
 -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta 
 -dbtype nucl 
 -parse_seqids 
--out ~/Desktop/BLAST+/Output/newt_transcriptome.fasta
+-out ~/Desktop/BLAST+/Output/newt_transcriptome
 ```
 Actual version:
 ```
-~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Output/newt_transcriptome.fasta
+~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Output/newt_transcriptome
 ```
 What is this code doing? In the first line, we give the path to the executable file 'makeblastdb' in the bin directory. '-in' is a flag that represents input file. '-dbtype' is a flag that tells the program if your FASTA data is nucleotide or amino acid data. '-out' tells the program where to save your new database and what to call it. 
 
@@ -65,10 +65,12 @@ Make a txt file with your sequence queries and put this file into your "Input" d
 Run the below commands, but **change paths as necessary** and look at the flags. I have trouble running these commands without putting the explicit paths. 
 Make sure to add output file names; here we are exporting data in HTML format! Need to include -html flag.
 
+Tidy version:
 ```
-~/Desktop/Bioinformatics/BLASTplus/bin/tblastn 
--query /Users/pvaelli/Desktop/Bioinformatics/BLASTplus/Input/SEQUENCE QUERY FILE
--db /Users/pvaelli/Desktop/Bioinformatics/BLASTplus/Databases/DATABASE FILE
--out /Users/pvaelli/Desktop/Bioinformatics/BLASTplus/Output/OUTPUT FILE.html -html
+
+```
+Actual version:
+```
+~/Desktop/BLAST+/bin/tblastn -query ~/Desktop/BLAST+/Input/Homo_nav1.6.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome.fasta -out ~/Desktop/BLAST+/Output/Nav1.6_hits.html -html
 ```
 
