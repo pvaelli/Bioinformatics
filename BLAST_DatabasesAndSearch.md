@@ -67,10 +67,13 @@ Make sure to add output file names; here we are exporting data in HTML format! N
 
 Tidy version:
 ```
-
+~/Desktop/BLAST+/bin/tblastn 
+-query ~/Desktop/BLAST+/Input/Homo_nav1.6.fasta 
+-db ~/Desktop/BLAST+/Database/newt_transcriptome 
+-out ~/Desktop/BLAST+/Output/Nav1.6_hits.html -html
 ```
 Actual version:
 ```
-~/Desktop/BLAST+/bin/tblastn -query ~/Desktop/BLAST+/Input/Homo_nav1.6.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome.fasta -out ~/Desktop/BLAST+/Output/Nav1.6_hits.html -html
+~/Desktop/BLAST+/bin/tblastn -query ~/Desktop/BLAST+/Input/Homo_nav1.6.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome -out ~/Desktop/BLAST+/Output/Nav1.6_hits.html -html
 ```
 
