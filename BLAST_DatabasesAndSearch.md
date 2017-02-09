@@ -64,27 +64,63 @@ Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublim
 ```
 
 Notes on the above code:
-*I've added hard returns so you can read the code -- these returns MUST BE DELETED or the code won't work.
-*Occasionally, this command can be buggy. If you encounter an error, try replacing the "~" with the full path name. In the case above, it would instead be /Users/pvaelli/Desktop. It will likely be /Users/YOURUSERNAME/Desktop for you. To determine the full path to a folder or file on the terminal in general, navigate to that location using `cd FolderName` and type `pwd`. Navigate backwards up folders using `cd ..`.
+* I've added hard returns so you can read the code -- these returns MUST BE DELETED or the code won't work.
+* Occasionally, this command can be buggy. If you encounter an error, try replacing the "~" with the full path name. In the case above, it would instead be /Users/pvaelli/Desktop. It will likely be /Users/YOURUSERNAME/Desktop for you. To determine the full path to a folder or file on the terminal in general, navigate to that location using `cd FolderName` and type `pwd`. Navigate backwards up folders using `cd ..`
 
 Example version:
 ```
 ~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Database/newt_transcriptome
 ```
-Again, what is this code doing? In the first line, we give the path to the executable file 'makeblastdb' in the bin directory. '-in' is a flag that represents input file. '-dbtype' is a flag that tells the program if your FASTA data is nucleotide or amino acid data. '-out' tells the program where to save your new database and what to call it. 
+
+Again, what is this code doing? In the first line, we give the path to the executable file 'makeblastdb' in the bin directory. '-in' is a flag that represents input file. '-dbtype' is a flag that tells the program if your FASTA data is nucleotide or amino acid data. '-out' tells the program where to save your new database and what to call it.  
 
 ***
 ### Running a BLAST search
-Make a txt file with your sequence queries and put this file into your "Input" directory
-Run the below commands, but **change paths as necessary** and look at the flags. I have trouble running these commands without putting the explicit paths. 
-Make sure to add output file names; here we are exporting data in HTML format! Need to include -html flag.
+Now we are almost ready for BLAST. We have made a database that is compatible with BLAST+, but we need to create a FASTA file with query sequence(s) from our gene of interest and put this file into your "Input" directory.  
+
+Here's an example of a FASTA formatted sequence query for the mouse beta-actin (actb) gene:
+```
+>NM_007393.5 Mus musculus actin, beta (Actb), mRNA
+TATAAAACCCGGCGGCGCAACGCGCAGCCACTGTCGAGTCGCGTCCACCCGCGAGCACAGCTTCTTTGCA
+GCTCCTTCGTTGCCGGTCCACACCCGCCACCAGTTCGCCATGGATGACGATATCGCTGCGCTGGTCGTCG
+ACAACGGCTCCGGCATGTGCAAAGCCGGCTTCGCGGGCGACGATGCTCCCCGGGCTGTATTCCCCTCCAT
+CGTGGGCCGCCCTAGGCACCAGGGTGTGATGGTGGGAATGGGTCAGAAGGACTCCTATGTGGGTGACGAG
+GCCCAGAGCAAGAGAGGTATCCTGACCCTGAAGTACCCCATTGAACATGGCATTGTTACCAACTGGGACG
+ACATGGAGAAGATCTGGCACCACACCTTCTACAATGAGCTGCGTGTGGCCCCTGAGGAGCACCCTGTGCT
+GCTCACCGAGGCCCCCCTGAACCCTAAGGCCAACCGTGAAAAGATGACCCAGATCATGTTTGAGACCTTC
+AACACCCCAGCCATGTACGTAGCCATCCAGGCTGTGCTGTCCCTGTATGCCTCTGGTCGTACCACAGGCA
+TTGTGATGGACTCCGGAGACGGGGTCACCCACACTGTGCCCATCTACGAGGGCTATGCTCTCCCTCACGC
+CATCCTGCGTCTGGACCTGGCTGGCCGGGACCTGACAGACTACCTCATGAAGATCCTGACCGAGCGTGGC
+TACAGCTTCACCACCACAGCTGAGAGGGAAATCGTGCGTGACATCAAAGAGAAGCTGTGCTATGTTGCTC
+TAGACTTCGAGCAGGAGATGGCCACTGCCGCATCCTCTTCCTCCCTGGAGAAGAGCTATGAGCTGCCTGA
+CGGCCAGGTCATCACTATTGGCAACGAGCGGTTCCGATGCCCTGAGGCTCTTTTCCAGCCTTCCTTCTTG
+GGTATGGAATCCTGTGGCATCCATGAAACTACATTCAATTCCATCATGAAGTGTGACGTTGACATCCGTA
+AAGACCTCTATGCCAACACAGTGCTGTCTGGTGGTACCACCATGTACCCAGGCATTGCTGACAGGATGCA
+GAAGGAGATTACTGCTCTGGCTCCTAGCACCATGAAGATCAAGATCATTGCTCCTCCTGAGCGCAAGTAC
+TCTGTGTGGATCGGTGGCTCCATCCTGGCCTCACTGTCCACCTTCCAGCAGATGTGGATCAGCAAGCAGG
+AGTACGATGAGTCCGGCCCCTCCATCGTGCACCGCAAGTGCTTCTAGGCGGACTGTTACTGAGCTGCGTT
+TTACACCCTTTCTTTGACAAAACCTAACTTGCGCAGAAAAAAAAAAAATAAGAGACAACATTGGCATGGC
+TTTGTTTTTTTAAATTTTTTTTAAAGTTTTTTTTTTTTTTTTTTTTTTTTTTTTTAAGTTTTTTTGTTTT
+GTTTTGGCGCTTTTGACTCAGGATTTAAAAACTGGAACGGTGAAGGCGACAGCAGTTGGTTGGAGCAAAC
+ATCCCCCAAAGTTCTACAAATGTGGCTGAGGACTTTGTACATTGTTTTGTTTTTTTTTTTTTTTGGTTTT
+GTCTTTTTTTAATAGTCATTCCAAGTATCCATGAAATAAGTGGTTACAGGAAGTCCCTCACCCTCCCAAA
+AGCCACCCCCACTCCTAAGAGGAGGATGGTCGCGTCCATGCCCTGAGTCCACCCCGGGGAAGGTGACAGC
+ATTGCTTCTGTGTAAATTATGTACTGCAAAAATTTTTTTAAATCTTCCGCCTTAATACTTCATTTTTGTT
+TTTAATTTCTGAATGGCCCAGGTCTGAGGCCTCCCTTTTTTTTGTCCCCCCAACTTGATGTATGAAGGCT
+TTGGTCTCCCTGGGAGGGGGTTGAGGTGTTGAGGCAGCCAGGGCTGGCCTGTACACTGACTTGAGACCAA
+TAAAAGTGCACACCTTACCTTACACAAACAAAAAAAAAAAAAAAA
+```
+
+You can paste this sequence into your text editor, and Save As `mouse_actb.fasta` at the correct path location: ~/Desktop/BLAST+/Input. Make sure to add the extension .fasta to your text file; don't use .txt  
+
+Now we're ready to go. We have a FASTA-formatted query sequence and a BLAST+ friendly database. Here is the code we use to perform a BLASTn (nucleotide query, nucleotide dataset).
 
 Tidy version:
 ```
 ~/Desktop/BLAST+/bin/tblastn 
--query ~/Desktop/BLAST+/Input/Homo_nav1.6.fasta 
+-query ~/Desktop/BLAST+/Input/mouse_actb.fasta 
 -db ~/Desktop/BLAST+/Database/newt_transcriptome 
--out ~/Desktop/BLAST+/Output/Nav1.6_hits.html -html
+-out ~/Desktop/BLAST+/Output/mouse_actb_hits.html -html
 ```
 Actual version:
 ```
@@ -95,7 +131,7 @@ Actual version:
 
 Making a database from transcriptomic data.
 
-Tidy version:
+Example `makeblastdb`:
 ```
 ~/Desktop/BLAST+/bin/makeblastdb 
 -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta 
@@ -103,21 +139,22 @@ Tidy version:
 -parse_seqids 
 -out ~/Desktop/BLAST+/Database/newt_transcriptome
 ```
-Actual version:
+Remember to remove hard returns. The code should actually look like this:
 ```
 ~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Database/DATABASE_FILE
 ```
 
-Performing a tBLASTn search for the beta actin gene:
 
-Tidy version:
+
+Example `tblastn` searchs:
 ```
 ~/Desktop/BLAST+/bin/tblastn 
 -query ~/Desktop/BLAST+/Input/Homo_ATCB.fasta 
 -db ~/Desktop/BLAST+/Database/newt_transcriptome 
 -out ~/Desktop/BLAST+/Output/ATCB_hits.html -html
 ```
-Actual version:
+or
+
 ```
-~/Desktop/BLAST+/bin/tblastn -query ~/Desktop/BLAST+/Input/Homo_ATCB.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome -out ~/Desktop/BLAST+/Output/ATCB_hits.html -html
+~/Desktop/BLAST+/bin/tblastn -query ~/Desktop/BLAST+/Input/Homo_Kv.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome -out ~/Desktop/BLAST+/Output/Homo_Kv_hits.html -html
 ```
