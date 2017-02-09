@@ -1,21 +1,23 @@
 ##Instructions for building BLAST databases on your local machine using BLAST+ on MacOSX.
 
-BLAST+ is a program that allows you to build custom BLASTable databases from FASTA-formatted sequence assemblies. These assemblies can include genomic or transcriptomic sequence data. For our purposes, we build BLAST+ databases from transcriptome assemblies to probe for genes of interest.
+BLAST+ is a command line tool that allows you to build custom BLASTable databases from FASTA-formatted sequence assemblies. These assemblies can include genomic or transcriptomic sequence data. For our purposes, we build BLAST+ databases from transcriptome assemblies to probe for genes of interest.
 
-Before we begin, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) and follow the link for "Installers and source code.."
+Note: these instructions are meant for MacOSX users, but conceptually it will be the same across platforms. On the Mac, these tools are run using the terminal.
+
+Before we begin, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) and follow the link for "Installers and source code..". Download the appropriate version for your computer.
 
 ***
+Open up the terminal program on your computer.
 
-Unzip the file to create the BLAST+ directory. Do this manually or on the command line type:
+First, unzip the BLAST+ file to create the BLAST+ directory. You can do this manually, or in the terminal window paste the following code:
 ```
 cd ~/Downloads
 tar -xvzf ncbi-blast-2.6.0+-x64-macosx.tar.gz
-```
-The directory comes with an annoying name. Rename it something simple like "BLAST+". Do it manually, or on the command line type:
+```  
+The directory comes with an annoying name. Rename it something simple like "BLAST+". Do it manually or paste the following into the terminal:
 ```
 mv ncbi-blast-2.6.0+ BLAST+
-```
-
+```  
 Let's move the directory somewhere more useful, like our Desktop. Do this manually by dragging the folder, or simply type:
 ```
 mv ~/Downloads/BLAST+ ~/Desktop
