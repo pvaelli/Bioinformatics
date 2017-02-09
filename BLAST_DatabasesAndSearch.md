@@ -4,7 +4,7 @@ BLAST+ is a program that allows you to build custom BLASTable databases from FAS
 
 Before we begin, go to this [link to download BLAST+](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/)  
 
-If the previous link fails, try [here](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download)
+If the previous link fails, try [here](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) and follow the link for "installers and source code"
 
 
 Unzip the file to create the BLAST+ directory. Do this manually or on the command line type:
