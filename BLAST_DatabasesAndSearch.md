@@ -50,7 +50,8 @@ Tidy version:
 ```
 ~/Desktop/BLAST+/bin/makeblastdb 
 -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta 
--dbtype nucl -parse_seqids 
+-dbtype nucl 
+-parse_seqids 
 -out ~/Desktop/BLAST+/Output/newt_transcriptome.fasta
 ```
 Actual version:
