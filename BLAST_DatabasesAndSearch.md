@@ -41,7 +41,7 @@ To build our database, first place your FASTA-formatted sequence assembly in the
 mv path-to-your-file/filename.fasta ~/Desktop/BLAST+/Input
 ```
 
-To make the database, we run the `makeblastdb` command. Copy the below code into a text editor and modify the paths and filenames to match your own computer. For me, the code looks like this. You need only change the file paths and file names.  
+To make the database, we run the `makeblastdb` command. Copy the code below into a text editor such as [TextWrangler]() and modify the paths and filenames to match your own computer. For me, the code looks like this. You need only change the file paths and file names.  
 Note:
 +Putting /User/pvaelli/Desktop oddly did not work, but using a "~" sign to represent /Users/pvaelli does work. 
 +You will need to remove the hard returns before each flag in the code. I added them to make the code easier to read.
@@ -52,11 +52,11 @@ Tidy version:
 -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta 
 -dbtype nucl 
 -parse_seqids 
--out ~/Desktop/BLAST+/Output/newt_transcriptome
+-out ~/Desktop/BLAST+/Database/newt_transcriptome
 ```
 Actual version:
 ```
-~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Output/newt_transcriptome
+~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Database/newt_transcriptome
 ```
 What is this code doing? In the first line, we give the path to the executable file 'makeblastdb' in the bin directory. '-in' is a flag that represents input file. '-dbtype' is a flag that tells the program if your FASTA data is nucleotide or amino acid data. '-out' tells the program where to save your new database and what to call it. 
 
