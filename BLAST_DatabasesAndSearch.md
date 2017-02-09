@@ -7,6 +7,8 @@ Note: these instructions are meant for MacOSX users, but conceptually it will be
 Before we begin, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) and follow the link for "Installers and source code..". Download the appropriate version for your computer.
 
 ***
+###Getting started  
+
 Open up the terminal program on your computer.
 
 First, unzip the BLAST+ file to create the BLAST+ directory. You can do this manually, or in the terminal window paste the following code:
@@ -28,31 +30,34 @@ The BLAST+ program comes with a 'bin' directory that contains all of the necessa
 ```
 mkdir Input Output Databases
 ```
-
 We've created three directories with intuitive names. From here, we need only 
 ...1.) Create a BLASTable database from a FASTA-formatted sequence assembly and 
 ...2.) Create a list of probes (nucleotide, amino acid, or protein domain sequences) for your gene of interest to be used as a BLAST query.
 
-To build our BLASTable database, place your sequence assembly (in FASTA format) into the "Input" directory. Do this manually, or type:
+###Building a BLASTable database  
+
+To build our database, first place your FASTA-formatted sequence assembly in the "Input" directory. Do this manually, or:
 ```
 mv path-to-your-file/filename.fasta ~/Desktop/BLAST+/Input
 ```
 
-Within the main directory there is a subdirectory called "bin". This contains the executable that allows us to build a database and run various BLAST searches:
+To make the database, we run the `makeblastdb` command. Copy the below code into a text editor and modify the paths and filenames to match your own computer. For me, the code looks like this. You need only change the file paths and file names.  
+Note:
++Putting /User/pvaelli/Desktop oddly did not work, but using a "~" sign to represent /Users/pvaelli does work. 
++You will need to remove the hard returns before each flag in the code. I added them to make the code easier to read.
 
+Tidy version:
 ```
-cd bin
+~/Desktop/BLAST+/bin/makeblastdb 
+-in ~/Desktop/BLAST+/Input/newt.Trinity.fasta 
+-dbtype nucl -parse_seqids 
+-out ~/Desktop/BLAST+/Output/newt_transcriptome.fasta
 ```
-
-To make the database, run the `makeblastdb` command: 
-
+Actual version:
 ```
-~/Desktop/Bioinformatics/BLASTplus/bin/makeblastdb 
--in ~/Desktop/Bioinformatics/BLASTplus/Input/SEQUENCE ASSEMBLY FILE 
--dbtype nucl 
--parse_seqids 
--out ~/Desktop/Bioinformatics/BLASTplus/Databases/NAME FOR YOUR DATABASE
+~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Output/newt_transcriptome.fasta
 ```
+What is this code doing? In the first line, we give the path to the executable file 'makeblastdb' in the bin directory. '-in' is a flag that represents input file. '-dbtype' is a flag that tells the program if your FASTA data is nucleotide or amino acid data. '-out' tells the program where to save your new database and what to call it. 
 
 ### Running a BLAST search
 Make a txt file with your sequence queries and put this file into your "Input" directory
