@@ -31,7 +31,7 @@ The BLAST+ program comes with a 'bin' directory that contains all of the necessa
 mkdir Input Output Databases
 ```
 We've created three directories with intuitive names. From here, we need only:  
-1. Create a BLASTable database from a FASTA-formatted sequence assembly and 
+1. Create a BLASTable database from a FASTA-formatted sequence assembly and  
 2. Create a list of probes (nucleotide, amino acid, or protein domain sequences) for your gene of interest to be used as a BLAST query.
 
 ***
