@@ -111,7 +111,7 @@ TTGGTCTCCCTGGGAGGGGGTTGAGGTGTTGAGGCAGCCAGGGCTGGCCTGTACACTGACTTGAGACCAA
 TAAAAGTGCACACCTTACCTTACACAAACAAAAAAAAAAAAAAAA
 ```
 
-You can paste this sequence into your text editor, and Save As `mouse_actb.fasta` at the correct path location: ~/Desktop/BLAST+/Input. Make sure to add the extension .fasta to your text file; don't use .txt  
+You can paste this sequence into your text editor, and Save As `mouse_actb.fasta` at the correct path location: `~/Desktop/BLAST+/Input`. Make sure to add the extension .fasta to your text file; don't use .txt  
 
 Now we're ready to go. We have a FASTA-formatted query sequence and a BLAST+ friendly database. Here is the code we use to perform a BLASTn (nucleotide query, nucleotide dataset).
 
@@ -137,7 +137,7 @@ Before we wrap up, there are a few different types of BLAST searches that we can
 | tblastn       | protein     | nucleotide| 
 | blastx        | nucleotide  | protein   |
 
-That's it! You've now gone from a FASTA-formatted sequence assembly to a BLASTable database to a HTML formatted file with a list of your top hits. Now you can copy the name of your top hits and open your original sequence assembly to search and retrieve your hits. You should probably BLAST your hits on [NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to confirm the identity of each sequence. 
+That's it! You've now gone from a FASTA-formatted sequence assembly to a BLASTable database to a HTML formatted file with a list of your top hits. Now you can copy the name of your top hits and open your original sequence assembly to search and retrieve your hits. You should probably [BLAST your hits on NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to confirm the identity of each sequence. 
 
 ***
 ### Specific example
