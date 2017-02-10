@@ -4,19 +4,19 @@ BLAST+ is a command line tool that allows you to build custom BLASTable database
 
 Note: these instructions are meant for MacOSX users, but conceptually it will be the same across platforms. On the Mac, these tools are run using the terminal.
 
-Before we begin, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) and follow the link for "Installers and source code..". Download the appropriate version for your computer. For my Mac, I downloaded ncbi-blast-2.6.0+-x64-macosx.tar.gz
+Before we begin, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastDocs&DOC_TYPE=Download) and follow the link for "Installers and source code..". Download a .tar.gz file appropriate for your operating system to your Downloads folder. For my Mac, I downloaded ncbi-blast-2.6.0+-x64-macosx.tar.gz
 
 ***
 ###Getting started  
 
 Open up the terminal program on your computer (command + space, search for terminal).
 
-First, unzip the BLAST+ file to create the BLAST+ directory. You can do this manually, or in the terminal window paste the following code (note: change the .tar.gz file name to match the version you downloaded):
+First, unzip the file. You can do this manually, or in the terminal window paste the following code (note: change the .tar.gz file name to match the version you downloaded):
 ```
 cd ~/Downloads
 tar -xzvf ncbi-blast-2.6.0+-x64-macosx.tar.gz
 ```  
-The directory comes with an annoying name. Rename it something simple like "BLAST+". Do it manually or paste the following into the terminal:
+The directory comes with an annoying name. Rename it something simple like "BLAST+". Do it manually or paste the following into the terminal (note: rename the "ncbi-blast-2.6.0+" to match the version you downloaded):
 ```
 mv ncbi-blast-2.6.0+ BLAST+
 ```  
@@ -28,6 +28,7 @@ cd ~/Desktop/BLAST+
 
 The BLAST+ program comes with a 'bin' directory that contains all of the necessary executables for running the program (e.g. makeblastdb, blastn, blastp, etc.). Now we want to make three new directories for our *own data* to keep ourselves organized:
 ```
+cd ~/Desktop/BLAST+
 mkdir Input Output Databases
 ```
 We've created three directories with intuitive names. From here, we need only:  
