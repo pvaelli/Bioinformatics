@@ -112,12 +112,12 @@ Tidy version:
 ```
 ~/Desktop/BLAST+/bin/blastn 
 -query ~/Desktop/BLAST+/Input/mouse_actb.fasta 
--db ~/Desktop/BLAST+/Database/newt_transcriptome 
+-db ~/Desktop/BLAST+/Database/transcriptome_database
 -out ~/Desktop/BLAST+/Output/mouse_actb_hits.html -html
 ```
 Actual version:
 ```
-~/Desktop/BLAST+/bin/blastn -query ~/Desktop/BLAST+/Input/mouse_actb.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome -out ~/Desktop/BLAST+/Output/mouse_actb_hits.html -html
+~/Desktop/BLAST+/bin/blastn -query ~/Desktop/BLAST+/Input/mouse_actb.fasta -db ~/Desktop/BLAST+/Database/transcriptome_database -out ~/Desktop/BLAST+/Output/mouse_actb_hits.html -html
 ```
 So what's going on up here? First, we direct toward the blastn executable in the bin. `-query` specifies the location and name of our query file; `-db` specifies the location and name of our database; and `-out` specifies the location for the output, which is a list of your top BLAST hits. Here, we are creating a new file `mouse_actb_hits.html` using the `-html` flag to create the HTML file. We can then open this file in our web browser to analyze the results of our BLAST search. 
 
