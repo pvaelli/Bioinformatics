@@ -18,10 +18,12 @@ tar -xzvf ncbi-blast-2.6.0+-x64-macosx.tar.gz
 ```  
 The directory comes with an annoying name. Rename it something simple like "BLAST+". Do it manually or paste the following into the terminal (note: rename the "ncbi-blast-2.6.0+" to match the version you downloaded):
 ```
+cd ~/Downloads
 mv ncbi-blast-2.6.0+ BLAST+
 ```  
 Let's move the directory somewhere more useful, like our Desktop. Do this manually by moving the folder in Finder, or:
 ```
+cd ~/Downloads
 mv ~/Downloads/BLAST+ ~/Desktop
 cd ~/Desktop/BLAST+
 ```
@@ -38,7 +40,7 @@ We've created three directories with intuitive names. From here, we need only:
 ***
 ###Building a BLASTable database  
 
-To build our database, first place your FASTA-formatted sequence assembly in the "Input" directory. Do this manually, or paste the following into the terminal:
+To build our database, first place your FASTA-formatted sequence assembly in the "Input" directory. Do this manually, or put the assembly on your Desktop paste the following into the terminal:
 ```
 mv ~/Desktop/newt.Trinity.fasta ~/Desktop/BLAST+/Input
 ```
@@ -50,7 +52,7 @@ To make the database, we run the `makeblastdb` command. This command has 5 input
 4. `-parse_seqids` tells the program to parse by "|" characters in the sequence headers.  
 5. The path for the output, which will be our new BLASTable database. Therefore, we will direct the output to the "Database" directory that we previously created.  
 
-Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. If you've followed my instructions thus far, the paths should be the same as the code below. I've added hard returns so you can read the code -- these returns MUST BE DELETED. The spacing is also important. Look at the example version to match the spacing (e.g. there is a space before each "-")
+Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. If you've followed my instructions thus far, the paths should be the same as the code below. I've added hard returns so you can read the code -- these returns MUST BE DELETED. The spacing is also important. Look at the example version to match the spacing (e.g. there is a space before each "-").
 
 ```
 ~/Desktop/BLAST+/bin/makeblastdb 
@@ -121,7 +123,7 @@ Actual version:
 ```
 So what's going on up here? First, we direct toward the blastn executable in the bin. `-query` specifies the location and name of our query file; `-db` specifies the location and name of our database; and `-out` specifies the location for the output, which is a list of your top BLAST hits. Here, we are creating a new file `mouse_actb_hits.html` using the `-html` flag to create the HTML file. We can then open this file in our web browser to analyze the results of our BLAST search.  
 
-You now have data! Go to your Output directory and retrieve your BLAST hits!
+You now have data! Go to your Output directory and open your new HTML file with your BLAST hit results. 
 
 Before we wrap up, there are a few different types of BLAST searches that we can perform. Here is a list that includes search type, query type, and data type. By type, I mean either nucleotide data or amino acid data. Replace `blastn` with `blastp`, `tblastn`, or `blastx`. For our purposes, the best search is `tblastn` using a protein query against our nucleotide transcriptome.
 
