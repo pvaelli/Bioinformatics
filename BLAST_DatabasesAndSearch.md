@@ -38,27 +38,23 @@ We've created three directories with intuitive names. From here, we need only:
 ***
 ###Building a BLASTable database  
 
-To build our database, first place your FASTA-formatted sequence assembly in the "Input" directory. Do this manually, or:
-```
-mv path-to-your-file/FILENAME.fasta ~/Desktop/BLAST+/Input
-```
-You will need to adjust the path-to-your-file to match your computer. The assembly was on my Desktop, so:
+To build our database, first place your FASTA-formatted sequence assembly in the "Input" directory. Do this manually, or paste the following into the terminal:
 ```
 mv ~/Desktop/newt.Trinity.fasta ~/Desktop/BLAST+/Input
 ```
 
 To make the database, we run the `makeblastdb` command. This command has 5 inputs:  
-1. The path to the makeblastdb executable file  
+1. The path to the `makeblastdb` executable file  
 2. The path to your input file, which is your FASTA-formatted assembly  
 3. Specify if you have nucleotide or amino acid data. After `-dbtype`, add "nucl" or "prot" depending on your file.  
-4. `-parse_seqids` tells the program to parse by "|" characters in the sequence headers. You don't need to know any more than that.  
+4. `-parse_seqids` tells the program to parse by "|" characters in the sequence headers.
 5. The path for the output, which will be our new BLASTable database. Therefore, we will direct the output to the "Database" directory.  
 
 Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. If you've followed my instructions thus far, the paths should be the same.
 
 ```
 ~/Desktop/BLAST+/bin/makeblastdb 
--in ~/Desktop/BLAST+/Input/TrinityAssembly.fasta 
+-in ~/Desktop/BLAST+/Input/newt.Trinity.fasta 
 -dbtype nucl 
 -parse_seqids 
 -out ~/Desktop/BLAST+/Database/transcriptome_database
