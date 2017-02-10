@@ -44,7 +44,7 @@ mv path-to-your-file/FILENAME.fasta ~/Desktop/BLAST+/Input
 ```
 You will need to adjust the path-to-your-file to match your computer. The assembly was on my Desktop, so:
 ```
-mv ~/Desktop/assembly.fasta ~/Desktop/BLAST+/Input
+mv ~/Desktop/newt.Trinity.fasta ~/Desktop/BLAST+/Input
 ```
 
 To make the database, we run the `makeblastdb` command. This command has 5 inputs:  
