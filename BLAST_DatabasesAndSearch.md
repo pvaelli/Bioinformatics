@@ -52,6 +52,10 @@ To make the database, we run the `makeblastdb` command. This command has 5 input
 
 Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. If you've followed my instructions thus far, the paths should be the same.
 
+Notes on the code below:
+* I've added hard returns so you can read the code -- these returns MUST BE DELETED or the code won't work.
+* Occasionally, this command can be buggy. If you encounter an error, try replacing the "~" with the full path name. In the case above, it would instead be /Users/pvaelli/Desktop. It will likely be /Users/YOURUSERNAME/Desktop for you. To determine the full path to a folder or file on the terminal in general, navigate to that location using `cd FolderName` and type `pwd`. Navigate backwards up folders using `cd ..`
+
 ```
 ~/Desktop/BLAST+/bin/makeblastdb 
 -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta 
@@ -59,10 +63,6 @@ Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublim
 -parse_seqids 
 -out ~/Desktop/BLAST+/Database/transcriptome_database
 ```
-
-Notes on the above code:
-* I've added hard returns so you can read the code -- these returns MUST BE DELETED or the code won't work.
-* Occasionally, this command can be buggy. If you encounter an error, try replacing the "~" with the full path name. In the case above, it would instead be /Users/pvaelli/Desktop. It will likely be /Users/YOURUSERNAME/Desktop for you. To determine the full path to a folder or file on the terminal in general, navigate to that location using `cd FolderName` and type `pwd`. Navigate backwards up folders using `cd ..`
 
 Example version:
 ```
