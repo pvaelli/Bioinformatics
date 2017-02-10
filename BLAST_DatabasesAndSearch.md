@@ -29,7 +29,7 @@ cd ~/Desktop/BLAST+
 The BLAST+ program comes with a 'bin' directory that contains all of the necessary executables for running the program (e.g. makeblastdb, blastn, blastp, etc.). Now we want to make three new directories for our *own data* to keep ourselves organized:
 ```
 cd ~/Desktop/BLAST+
-mkdir Input Output Databases
+mkdir Input Output Database
 ```
 We've created three directories with intuitive names. From here, we need only:  
 1. Create a BLASTable database from a FASTA-formatted sequence assembly and  
@@ -50,14 +50,14 @@ To make the database, we run the `makeblastdb` command. This command has 5 input
 4. `-parse_seqids` tells the program to parse by "|" characters in the sequence headers.  
 5. The path for the output, which will be our new BLASTable database. Therefore, we will direct the output to the "Database" directory that we previously created.  
 
-Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. If you've followed my instructions thus far, the paths should be the same. I've added hard returns so you can read the code -- these returns MUST BE DELETED. The spacing is also important. Look at the example version to match the spacing (e.g. there is a space before each "-")
+Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. If you've followed my instructions thus far, the paths should be the same as the code below. I've added hard returns so you can read the code -- these returns MUST BE DELETED. The spacing is also important. Look at the example version to match the spacing (e.g. there is a space before each "-")
 
 ```
 ~/Desktop/BLAST+/bin/makeblastdb 
 -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta 
 -dbtype nucl 
 -parse_seqids 
--out ~/Desktop/BLAST+/Database/transcriptome_database
+-out ~/Desktop/BLAST+/Database/newt_transcriptome
 ```
 
 Example version:
@@ -65,7 +65,7 @@ Example version:
 ~/Desktop/BLAST+/bin/makeblastdb -in ~/Desktop/BLAST+/Input/newt.Trinity.fasta -dbtype nucl -parse_seqids -out ~/Desktop/BLAST+/Database/newt_transcriptome
 ```
 
-Again, what is this code doing? In the first line, we give the path to the executable file 'makeblastdb' in the bin directory. '-in' is a flag that represents input file. '-dbtype' is a flag that tells the program if your FASTA data is nucleotide or amino acid data. '-out' tells the program where to save your new database and what to call it.  
+Again, what is this code doing? In the first line, we give the path to the executable file `makeblastdb` in the bin directory. `-in` is a flag that represents input file. `-dbtype` is a flag that tells the program if your FASTA data are nucleotide or amino acid data. `-out` tells the program where to save your new database and what to call it.  
 
 ***
 ### Running a BLAST search
@@ -104,9 +104,9 @@ TTGGTCTCCCTGGGAGGGGGTTGAGGTGTTGAGGCAGCCAGGGCTGGCCTGTACACTGACTTGAGACCAA
 TAAAAGTGCACACCTTACCTTACACAAACAAAAAAAAAAAAAAAA
 ```
 
-You can paste this sequence into your text editor, and Save As `mouse_actb.fasta` at the correct path location: `~/Desktop/BLAST+/Input`. Make sure to add the extension .fasta to your text file; don't use .txt  
+You can paste this sequence into your text editor, and Save As `mouse_actb.fasta` at the correct path location: `~/Desktop/BLAST+/Input`. Make sure to add the extension .fasta to your text file; don't use .txt or other file types.
 
-Now we're ready to go. We have a FASTA-formatted query sequence and a BLAST+ friendly database. Here is the code we use to perform a BLASTn (nucleotide query, nucleotide dataset).
+Now we're ready to go. We have a FASTA-formatted query sequence and a BLAST+ friendly database. Here is the code we use to perform a BLASTn search (nucleotide query, nucleotide dataset).
 
 Tidy version:
 ```
@@ -119,16 +119,18 @@ Actual version:
 ```
 ~/Desktop/BLAST+/bin/blastn -query ~/Desktop/BLAST+/Input/mouse_actb.fasta -db ~/Desktop/BLAST+/Database/newt_transcriptome -out ~/Desktop/BLAST+/Output/mouse_actb_hits.html -html
 ```
-So what's going on up here? First, we direct toward the blastn executable in the bin. `-query` specifies the location and name of our query file; `-db` specifies the location and name of our database; and `-out` specifies the location for the output, which is a list of your top BLAST hits. Here, we are creating a new file `mouse_actb_hits.html` using the `-html` flag to create the HTML file. We can then open this file in our web browser to analyze the results of our BLAST search.
+So what's going on up here? First, we direct toward the blastn executable in the bin. `-query` specifies the location and name of our query file; `-db` specifies the location and name of our database; and `-out` specifies the location for the output, which is a list of your top BLAST hits. Here, we are creating a new file `mouse_actb_hits.html` using the `-html` flag to create the HTML file. We can then open this file in our web browser to analyze the results of our BLAST search. 
 
-Before we wrap up, there are a few different types of BLAST searches that we can perform. Here is a list that includes search type, query type, and data type. By type, I mean either nucleotide data or amino acid data. Here are examples:
+Go to your Output directory and retrieve your BLAST hits!
 
-| BLAST search  | Query       | Database  |
-| ------------- |-------------| ----------|
-| blastn        | nucleotide  | nucleotide|
-| blastp        | protein     | protein   |
-| tblastn       | protein     | nucleotide| 
-| blastx        | nucleotide  | protein   |
+Before we wrap up, there are a few different types of BLAST searches that we can perform. Here is a list that includes search type, query type, and data type. By type, I mean either nucleotide data or amino acid data. Replace 'blastn' with 
+
+| BLAST search  | Query       | Database   |
+| ------------- |-------------| -----------|
+| blastn        | nucleotide  | nucleotide |
+| blastp        | protein     | protein    |
+| tblastn       | protein     | nucleotide | 
+| blastx        | nucleotide  | protein    |
 
 That's it! You've now gone from a FASTA-formatted sequence assembly to a BLASTable database to a HTML formatted file with a list of your top hits. Now you can copy the name of your top hits and open your original sequence assembly to search and retrieve your hits. You should probably [BLAST your hits on NCBI](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to confirm the identity of each sequence. 
 
