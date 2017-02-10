@@ -14,7 +14,7 @@ Open up the terminal program on your computer (command + space, search for termi
 First, unzip the BLAST+ file to create the BLAST+ directory. You can do this manually, or in the terminal window paste the following code:
 ```
 cd ~/Downloads
-tar -xvzf ncbi-blast-2.6.0+-x64-macosx.tar.gz
+gunzip -c ncbi-blast-2.6.0+-x64-macosx.tar.gz | tar xopf -
 ```  
 The directory comes with an annoying name. Rename it something simple like "BLAST+". Do it manually or paste the following into the terminal:
 ```
