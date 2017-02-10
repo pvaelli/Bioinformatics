@@ -50,11 +50,7 @@ To make the database, we run the `makeblastdb` command. This command has 5 input
 4. `-parse_seqids` tells the program to parse by "|" characters in the sequence headers.  
 5. The path for the output, which will be our new BLASTable database. Therefore, we will direct the output to the "Database" directory that we previously created.  
 
-Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. If you've followed my instructions thus far, the paths should be the same.
-
-Notes on the code below:
-* I've added hard returns so you can read the code -- these returns MUST BE DELETED or the code won't work.
-* Occasionally, this command can be buggy. If you encounter an error, try replacing the "~" with the full path name. In the case above, it would instead be /Users/pvaelli/Desktop. It will likely be /Users/YOURUSERNAME/Desktop for you. To determine the full path to a folder or file on the terminal in general, navigate to that location using `cd FolderName` and type `pwd`. Navigate backwards up folders using `cd ..`
+Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. If you've followed my instructions thus far, the paths should be the same. I've added hard returns so you can read the code -- these returns MUST BE DELETED. The spacing is also important. Look at the example version to match the spacing (e.g. there is a space before each "-")
 
 ```
 ~/Desktop/BLAST+/bin/makeblastdb 
