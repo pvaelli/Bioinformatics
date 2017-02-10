@@ -48,7 +48,7 @@ To make the database, we run the `makeblastdb` command. This command has 5 input
 2. The path to your input file, which is your FASTA-formatted assembly  
 3. Specify if you have nucleotide or amino acid data. After `-dbtype`, add "nucl" or "prot" depending on your file.  
 4. `-parse_seqids` tells the program to parse by "|" characters in the sequence headers.  
-5. The path for the output, which will be our new BLASTable database. Therefore, we will direct the output to the "Database" directory.  
+5. The path for the output, which will be our new BLASTable database. Therefore, we will direct the output to the "Database" directory that we previously created.  
 
 Copy the code below into a text editor such as TextEdit, TextWrangler, or Sublime Text and modify the filenames. If you've followed my instructions thus far, the paths should be the same.
 
