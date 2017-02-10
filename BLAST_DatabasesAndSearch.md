@@ -11,10 +11,10 @@ Before we begin, go to this [link to download BLAST+](https://blast.ncbi.nlm.nih
 
 Open up the terminal program on your computer (command + space, search for terminal).
 
-First, unzip the BLAST+ file to create the BLAST+ directory. You can do this manually, or in the terminal window paste the following code:
+First, unzip the BLAST+ file to create the BLAST+ directory. You can do this manually, or in the terminal window paste the following code (note: change the .tar.gz file name to match the version you downloaded):
 ```
 cd ~/Downloads
-gunzip -c ncbi-blast-2.6.0+-x64-macosx.tar.gz | tar xopf -
+tar -xzvf ncbi-blast-2.6.0+-x64-macosx.tar.gz
 ```  
 The directory comes with an annoying name. Rename it something simple like "BLAST+". Do it manually or paste the following into the terminal:
 ```
