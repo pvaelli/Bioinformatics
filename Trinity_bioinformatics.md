@@ -80,18 +80,18 @@ cwd=$(pwd)
 python $cwd/FilterUncorrectablePEfastq.py -1 $1 -2 $2 -s $3
 ```
 
-## Submit the job with following line(note: output files will have prefix unfixrm_ and will be unzipped):
+Submit the job with following line(note: output files will have prefix unfixrm_ and will be unzipped):
 ```
 sbatch filter_reads.sh Body_R1_001.cor.fq.gz Body_R2_001.cor.fq.gz Body_summary
 ```
 
 
-# Step 4: Trim seqs with Trimgalore 
+## Step 4: Trim seqs with Trimgalore 
 
-### note: this script uses an older version of Trimgalore, which is currently in my folder in the shared bellono_lab directory
-### trimgalore must be in same directory with files. This job ran for ~15 hrs
+note: this script uses an older version of Trimgalore, which is currently in my folder in the shared bellono_lab directory \
+trimgalore must be in same directory with files. This job ran for ~15 hrs
 
-# submission script:
+## submission script:
 
 ```
 #!/bin/bash 
@@ -117,21 +117,21 @@ $cwd/trim_galore --paired --phred33 --length 36 -q 0 --stringency 1 -e 0.1 ./${o
 done
 ```
 
-# Step 5: Map reads to SILVA rRNA database to remove contamination
-### this method could be used to map reads to any black list (parasites, virus, fungi, etc)
+## Step 5: Map reads to SILVA rRNA database to remove contamination
+this method could be used to map reads to any black list (parasites, virus, fungi, etc)
 
 ## Make a bowtie2 index from SILVA rRNA LSU and SSU parc files. 
-### concatenate files:
+concatenate files:
 ```
 cat file1 file2
 ```
 
-### convert U to T (RNA to DNA seq):
+convert U to T (RNA to DNA seq):
 ```
 sed '/^[^>]/s/U/T/g' file.fasta >newfile.fasta
 ```
 
-# Submit script to run bowtie2 and make index
+## Submit script to run bowtie2 and make index
 ```
 #!/bin/bash
 #SBATCH -N 1
@@ -151,7 +151,7 @@ module load bowtie2/2.3.2-fasrc02
 bowtie2-build --large-index --threads 12 -f SILVA_rRNA_clean.fasta SILVA_rRNA
 ```
 
-# After the index is finished, include the path to the directory with all index files:
+## After the index is finished, include the path to the directory with all index files:
 
 ```
 #!/bin/bash
@@ -177,14 +177,12 @@ e.g.
 ```
 sbatch rRNA_cleanup.sh /n/holyscratch01/bellono_lab/Users/pvaelli/rRNA_database/SILVA_rRNA P1poly_R1_trimmed.fq.gz P1poly_R2_trimmed.fq.gz P1_poly
 ```
-## read pairs for which neither read mapped to the rRNA database,i.e. "paired_unaligned" reads, specified after the --un-conc-gz flag.
+read pairs for which neither read mapped to the rRNA database,i.e. "paired_unaligned" reads, specified after the --un-conc-gz flag.
 
 
-# Step 6: Quality check and remove overrepresented seqs
+## Step 6: Quality check and remove overrepresented seqs
 
-## run FASTQC:
-
-## submission script:
+run FASTQC:
 
 ```
 #!/bin/bash
@@ -207,8 +205,8 @@ for file in *.fq.gz; do
 done
 ```
 
-Unzip each new directory and rename/copy the txt file up to the fastq files
-Then run this python script which reads these txt files and removes overrep kmers from the fastq files
+Unzip each new directory and rename/copy the txt file up to the fastq files \
+Then, run this python script which reads these txt files and removes overrep kmers from the fastq files
 
 ```
 #!/bin/bash
@@ -234,7 +232,7 @@ sbatch overrep_seq.sh NP1poly_filtered_R1.fq.gz NP1poly_filtered_R2.fq.gz NP1pol
 
 
 
-# Step 7: Run Trinity
+## Step 7: Run Trinity
 
 
 ## Step 7A Harvard FAS method:
@@ -296,14 +294,14 @@ srun -n 1 env time -v singularity exec \
   
 
  
-# Step 7B: Bigmem method:
+## Step 7B: Bigmem method:
 
-Subsample reads to reduce redundancy and computational burden
-My four samples are between 70-100 million reads each, aiming for 100 million reads total, so subsample to 25 million each
-Note: this command will produce uncompressed files, even though extension is still fastq.gz
+Subsample reads to reduce redundancy and computational burden. \
+My four samples are between 70-100 million reads each, aiming for 100 million reads total, so subsample to 25 million each. \
+Note: this command will produce uncompressed files, even though extension is still fastq.gz \
 You need to remove .gz from each file name and re-compress using gzip command or Trinity will not work
 
-# submission script:
+## submission script:
 
 ```
 #!/bin/bash 
@@ -324,7 +322,7 @@ for file in *.fq.gz; do
 done
 ```
 
-# Check that it worked. Count the number of reads in original vs. subsampled files
+Check that it worked. Count the number of reads in original vs. subsampled files \
 
 zipped file: 
 ```echo $(zcat yourfile.fq.gz|wc -l)/4|bc```
@@ -332,7 +330,7 @@ unzipped:
 ```echo $(cat yourfile.fq|wc -l)/4|bc```
 
 
-# Bigmem sub script method:
+## Bigmem sub script method:
 
 ```
 #!/bin/bash 
@@ -357,7 +355,7 @@ Trinity --seqType fq --max_memory 200G --min_kmer_cov 1 --CPU 24 --left blacklis
 
 ```
 
-# Step 8: Transdecoder ORF finder
+## Step 8: Transdecoder ORF finder
 
 ## Use on Trinity.fasta file to identify open reading frames
 ```
@@ -382,7 +380,7 @@ TransDecoder.LongOrfs -t $TRANS_DATA/*Trinity.fasta
 TransDecoder.Predict -t $TRANS_DATA/*Trinity.fasta --single_best_only
 ```
 
-# Step 9: Swissprot annotation using Diamond
+## Step 9: Swissprot annotation using Diamond
 
 ## Need to first make a diamond index with FASTA reference database:
 
@@ -437,7 +435,7 @@ diamond blastp -q $DATA -d $DATABASE -o $OUT.diamond.tsv -k 1 -f 6 qseqid stitle
 ```
 
 
-# Step 10: Gene quantification using Kallisto read mapping
+## Step 10: Gene quantification using Kallisto read mapping
 
 ## first make kallisto index with cds file from transdecoder:
 
