@@ -2,11 +2,11 @@
 ### based on https://informatics.fas.harvard.edu/best-practices-for-de-novo-transcriptome-assembly-with-trinity.html
 ### revised 10-2-2020
 
-## Step 1: Quality metrics for raw reads
-# This job takes about an hour to complete
+# Step 1: Quality metrics for raw reads
+### This job takes about an hour to complete
 
 # submission script:
-
+```
 #!/bin/bash
 #SBATCH -p shared       # Partition to submit to
 #SBATCH -n 1                   # Number of cores
@@ -25,13 +25,14 @@ module load fastqc/0.11.5-fasrc01
 for file in *.fastq.gz; do
         fastqc $file
 done
+```
 
 
+# Step 2: Identify errorneous kmers
 
-## Step 2: Identify errorneous kmers
+### Script for Rcorrector. Can take up to 3 days
 
-# Script for Rcorrector. Can take up to 3 days
-
+```
 #!/bin/bash 
 #SBATCH -N 1
 #SBATCH -n 12
@@ -48,9 +49,12 @@ module purge
 module load Rcorrector/20180919-fasrc01 
 perl /n/helmod/apps/centos7/Core/Rcorrector/20180919-fasrc01/bin/run_rcorrector.pl -t 12 -1 $1 -2 $2
 
-# submit script using this command:
-sbatch Rcorrector.slurm NP1free_R1_001.fastq.gz NP1free_R2_001.fastq.gz
+```
 
+# submit script using this command:
+```
+sbatch Rcorrector.slurm NP1free_R1_001.fastq.gz NP1free_R2_001.fastq.gz
+```
 
 ## Step 3: Discard read pairs with one damaged read
 # download python script here: https://github.com/harvardinformatics/TranscriptomeAssemblyTools
