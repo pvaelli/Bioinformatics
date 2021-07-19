@@ -1,6 +1,6 @@
 # Trinity assembly protocol on Harvard Canon cluster
-### based on https://informatics.fas.harvard.edu/best-practices-for-de-novo-transcriptome-assembly-with-trinity.html
-### revised 10-2-2020
+based on https://informatics.fas.harvard.edu/best-practices-for-de-novo-transcriptome-assembly-with-trinity.html
+revised 7-19-2021
 
 # Step 1: Quality metrics for raw reads
 ### This job takes about an hour to complete
