@@ -500,4 +500,4 @@ kallisto quant -i $DATABASE -o $NAME ${out}1.fq.gz ${out}2.fq.gz
 done
 ```
 
-##That's it! Enjoy your assembled, annotated, and quantified transcriptomic data. 
+## That's it! Enjoy your assembled, annotated, and quantified transcriptomic data. 
