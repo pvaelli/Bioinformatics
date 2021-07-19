@@ -51,14 +51,15 @@ perl /n/helmod/apps/centos7/Core/Rcorrector/20180919-fasrc01/bin/run_rcorrector.
 
 ```
 
-# submit script using this command:
+## submit script using this command:
 ```
 sbatch Rcorrector.slurm NP1free_R1_001.fastq.gz NP1free_R2_001.fastq.gz
 ```
 
-## Step 3: Discard read pairs with one damaged read
-# download python script here: https://github.com/harvardinformatics/TranscriptomeAssemblyTools
+# Step 3: Discard read pairs with one damaged read
+### download python script here: https://github.com/harvardinformatics/TranscriptomeAssemblyTools
 
+```
 #!/bin/bash
 #SBATCH -J filter_reads_$1           # Job name
 #SBATCH -n 1                         # Use 1 core for the job
@@ -77,7 +78,7 @@ module load python/2.7.8-fasrc01
 cwd=$(pwd)
 
 python $cwd/FilterUncorrectablePEfastq.py -1 $1 -2 $2 -s $3
-
+```
 
 # Submit the job with following line:
 sbatch filter_reads.sh Body_R1_001.cor.fq.gz Body_R2_001.cor.fq.gz Body_summary
