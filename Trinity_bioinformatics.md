@@ -1,11 +1,11 @@
 # Trinity assembly protocol on Harvard Canon cluster
 based on https://informatics.fas.harvard.edu/best-practices-for-de-novo-transcriptome-assembly-with-trinity.html \
-revised 7-19-2021
+revised: 7-19-2021
 
-# Step 1: Quality metrics for raw reads
-### This job takes about an hour to complete
+## Step 1: Quality metrics for raw reads
+This job takes about an hour to complete
 
-# submission script:
+## submission script:
 ```
 #!/bin/bash
 #SBATCH -p shared       # Partition to submit to
@@ -28,9 +28,9 @@ done
 ```
 
 
-# Step 2: Identify errorneous kmers
+## Step 2: Identify errorneous kmers
 
-### Script for Rcorrector. Can take up to 3 days
+Script for Rcorrector. Can take up to 3 days
 
 ```
 #!/bin/bash 
@@ -51,13 +51,13 @@ perl /n/helmod/apps/centos7/Core/Rcorrector/20180919-fasrc01/bin/run_rcorrector.
 
 ```
 
-## submit script using this command:
+submit script using this command:
 ```
 sbatch Rcorrector.slurm NP1free_R1_001.fastq.gz NP1free_R2_001.fastq.gz
 ```
 
-# Step 3: Discard read pairs with one damaged read
-### download python script here: https://github.com/harvardinformatics/TranscriptomeAssemblyTools
+## Step 3: Discard read pairs with one damaged read
+download python script here: https://github.com/harvardinformatics/TranscriptomeAssemblyTools
 
 ```
 #!/bin/bash
