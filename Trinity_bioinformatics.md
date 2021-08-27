@@ -235,14 +235,17 @@ sbatch overrep_seq.sh NP1poly_filtered_R1.fq.gz NP1poly_filtered_R2.fq.gz NP1pol
 ## Step 7: Run Trinity
 
 
-## Step 7A Harvard FAS method:
+### Step 7A Harvard FAS method:
 
-```
+This submission script will search available compute nodes on Canon cluster, take over the whole node, and auto-fill the node/CPU/memory info into the Trinity command. This allows you to bypass guessing your memory requirements and generally allows your job to run faster...
+
+Save the submission script below without modification, then submit your job using sbatch trinity.sh --left comma-separated R1.fq.gz files --right comma-separated R1.fq.gz files
+Examples:
 sbatch trinity.sh --left NP1free_R1_001_val_1.fq.gz,NP1poly_R1_001_val_1.fq.gz,P1free_R1_001_val_1.fq.gz,P1poly_R1_001_val_1.fq.gz --right NP1free_R2_001_val_2.fq.gz,NP1poly_R2_001_val_2.fq.gz,P1free_R2_001_val_2.fq.gz,P1poly_R2_001_val_2.fq.gz
 sbatch trinity.sh --left blacklist_paired_unaligned_Algae_filtered.fq.1.gz --right blacklist_paired_unaligned_Algae_filtered.fq.2.gz
 sbatch trinity.sh --left Body_final_R1.fq.gz,Parapodia_final_R1.fq.gz --right Body_final_R2.fq.gz,Parapodia_final_R2.fq.gz
 
-
+```
 #!/bin/bash
 #SBATCH -N 1
 #SBATCH --mem=0
@@ -262,7 +265,7 @@ readonly SINGULARITY_IMAGE=/n/singularity_images/informatics/trinityrnaseq/trini
 readonly TRINITY_OUT_DIR=trinity_out_dir
 # To see all options:
 #    singularity exec --cleanenv ${SINGULARITY_IMAGE}  Trinity --show_full_usage_info
-readonly TRINITY_OPTIONS="--output ${TRINITY_OUT_DIR} --max_memory $((8*$(ulimit -m)/(1024**2)/10))G --CPU ${SLURM_CPUS_ON_NODE} --no_normalize_reads --seqType fq $@"
+readonly TRINITY_OPTIONS="--output ${TRINITY_OUT_DIR} --max_memory $((8*$(ulimit -m)/(1024**2)/10))G --CPU ${SLURM_CPUS_ON_NODE} --seqType fq $@"
 
 ########################################
 # ... don't modify below here ...
@@ -294,7 +297,7 @@ srun -n 1 env time -v singularity exec \
   
 
  
-## Step 7B: Bigmem method:
+## Step 7B: Bigmem method (historical reference):
 
 Subsample reads to reduce redundancy and computational burden. \
 My four samples are between 70-100 million reads each, aiming for 100 million reads total, so subsample to 25 million each. \
