@@ -430,7 +430,7 @@ module load gcc/9.3.0-fasrc01
 module load diamond/2.0.4-fasrc01
 
 DATA=*.Trinity.fasta.transdecoder.pep
-DATABASE=/n/holyscratch01/bellono_lab/Users/pvaelli/swissprot_diamond
+DATABASE=/n/holyscratch01/bellono_lab/Users/pvaelli/diamond_database/swissprot_diamond
 OUT=$(echo ${DATA} | sed 's/\..*//')
 
 # set -k 1 flag to retrieve one target seq per query; otherwise default=25
